@@ -93,7 +93,7 @@ namespace MiniThingsIDo
         /// <returns></returns>
         public static string[] BuildTheFirstEncryptPass(string pass)
         {
-            string randomStr = GenerateRandomString(new Random());
+            string randomStr = GenerateRandomString(new Random(),pass.Length);
             return BuildTheEncryptPass(pass, randomStr);
         }
         /// <summary>
