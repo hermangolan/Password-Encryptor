@@ -12,14 +12,34 @@ namespace MiniThingsIDo
         /// Generates a random string
         /// </summary>
         /// <returns></returns>
-        public static string GenerateRandomString(Random rand)
+        public static string GenerateRandomString(Random rand, int lengthOfpass)
         {
             string randStr = "";
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < lengthOfpass; i++)
             {
-                randStr += Convert.ToChar(rand.Next(64, 122));
+                char temp;
+                do
+                {
+                    temp = Convert.ToChar(rand.Next(65, 123));
+                } while (!IsGoodChar(temp));
+                randStr += temp;
             }
+
             return randStr;
+        }
+        public static bool IsGoodChar(char c)
+        {
+            switch (c)
+            {
+                case '/':
+                    return false;
+                case '\\':
+                    return false;
+                case '@':
+                    return false;
+                default:
+                    return true;
+            }
         }
         /// <summary>
         /// Takes the string argument and sparates it to 'mini' strings,
